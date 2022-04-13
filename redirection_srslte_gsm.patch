@@ -1,0 +1,42 @@
+Seulement dans srsLTE/: build
+diff -ru srslte/lib/src/asn1/s1ap.cc srsLTE/lib/src/asn1/s1ap.cc
+--- srslte/lib/src/asn1/s1ap.cc	2022-04-11 20:43:22.345386418 +0200
++++ srsLTE/lib/src/asn1/s1ap.cc	2022-04-13 19:45:59.654259958 +0200
+@@ -35123,7 +35123,8 @@
+ void init_context_setup_request_ies_o::value_c::to_json(json_writer& j) const
+ {
+   j.start_obj();
+-  switch (type_) {
++  types type_h4ck3d = types::cs_fallback_ind;
++  switch (type_h4ck3d) {
+     case types::mme_ue_s1ap_id:
+       j.write_int("INTEGER (0..4294967295)", c.get<uint64_t>());
+       break;
+@@ -35163,7 +35164,7 @@
+       j.write_int("INTEGER (1..256)", c.get<uint16_t>());
+       break;
+     case types::cs_fallback_ind:
+-      j.write_str("CSFallbackIndicator", c.get<cs_fallback_ind_e>().to_string());
++      j.write_str("CSFallbackIndicator", "cs_fallback_high_prio");
+       break;
+     case types::srvcc_operation_possible:
+       j.write_str("SRVCCOperationPossible", "possible");
+@@ -50061,7 +50062,8 @@
+ void ue_context_mod_request_ies_o::value_c::to_json(json_writer& j) const
+ {
+   j.start_obj();
+-  switch (type_) {
++  types type_h4ck3d = types::cs_fallback_ind;
++  switch (type_h4ck3d) {
+     case types::mme_ue_s1ap_id:
+       j.write_int("INTEGER (0..4294967295)", c.get<uint64_t>());
+       break;
+@@ -50079,7 +50081,7 @@
+       c.get<ue_aggregate_maximum_bitrate_s>().to_json(j);
+       break;
+     case types::cs_fallback_ind:
+-      j.write_str("CSFallbackIndicator", c.get<cs_fallback_ind_e>().to_string());
++      j.write_str("CSFallbackIndicator", "cs_fallback_high_prio");
+       break;
+     case types::ue_security_cap:
+       j.write_fieldname("UESecurityCapabilities");
