@@ -29,3 +29,4 @@ sudo srsenb
 Wait and you are done !
 
 N.B.: Not always working !!
+The UE has to had already been in GSM in active session so to make test switch to GSM then reswitch to LTE manually on the UE then you can try this CSFB attack.
