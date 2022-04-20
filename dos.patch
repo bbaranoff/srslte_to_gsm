@@ -1,0 +1,23 @@
+--- a/srsenb/hdr/stack/rrc/rrc_ue.h    2022-04-16 00:07:16.143703340 +0200
++++ b/srsenb/hdr/stack/rrc/rrc_ue.h    2022-04-20 10:18:25.173914019 +0200
+@@ -172,7 +172,7 @@
+   unique_rnti_ptr<rrc_mobility> mobility_handler;
+   unique_rnti_ptr<rrc_endc>     endc_handler;
+ 
+-  bool is_csfb = false;
++  bool is_csfb = true;
+ 
+ private:
+   srsran::unique_timer activity_timer; // for basic DL/UL activity timeout
+diff -ru srslte/srsepc/src/mme/nas.cc denylte/srsepc/src/mme/nas.cc
+--- srslte/srsepc/src/mme/nas.cc    2022-04-16 00:07:16.163703375 +0200
++++ denylte/srsepc/src/mme/nas.cc    2022-04-20 10:19:33.196658018 +0200
+@@ -1682,7 +1682,7 @@
+   LIBLTE_MME_TRACKING_AREA_UPDATE_REJECT_MSG_STRUCT tau_rej;
+   tau_rej.t3446_present = false;
+   tau_rej.t3446         = 0;
+-  tau_rej.emm_cause     = emm_cause;
++  tau_rej.emm_cause     = LIBLTE_MME_EMM_CAUSE_EPS_SERVICES_AND_NON_EPS_SERVICES_NOT_ALLOWED;
+ 
+   if (emm_cause == LIBLTE_MME_EMM_CAUSE_CONGESTION) {
+     // Standard would want T3446 set in this case
